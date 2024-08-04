@@ -1,0 +1,322 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>Assignment1</title>
+<meta name="generator" content="MATLAB 23.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2024-06-23">
+<meta name="DC.source" content="Assignment1.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#1">Quest&atilde;o 1:</a>
+</li>
+<li>
+<a href="#2">Quest&atilde;o 2:</a>
+</li>
+<li>
+<a href="#3">Quest&atilde;o 3</a>
+</li>
+</ul>
+</div>
+<h2 id="1">Quest&atilde;o 1:</h2>
+<pre class="codeinput">
+<span class="comment">%{
+</span><span class="comment">Reproduzir as pdfs das distribui&ccedil;&otilde;es Rayleigh, Rice e Nakagami-m.
+</span><span class="comment">(Fa&ccedil;a o upload dos tr&ecirc;s gr&aacute;ficos abaixo.
+</span><span class="comment">%}
+</span><span class="comment">% Define the colors for the plots</span>
+colors = lines(4);
+
+<span class="comment">% Rayleigh Distribution</span>
+h = 0:0.001:100;
+p_Ray = (2 * h) .* exp(-h.^2); <span class="comment">% Pr m&eacute;dio = 1</span>
+figure
+plot(h, p_Ray, <span class="string">'r'</span>, <span class="string">'Linewidth'</span>, 3)
+xlim([0 3])
+grid <span class="string">on</span>
+xlabel(<span class="string">'h'</span>)
+ylabel(<span class="string">'Ph(h)'</span>)
+title(<span class="string">'Rayleigh'</span>)
+legend(<span class="string">'Rayleigh'</span>)
+
+<span class="comment">% Rice Distribution for K = [0 2 10]</span>
+K_values = [0 2 10];
+figure
+hold <span class="string">on</span>
+<span class="keyword">for</span> i = 1:length(K_values)
+    K = K_values(i);
+    p_Rice = 2 .* h .* (K + 1) .* exp(-K - (K + 1) .* h.^2) .* besseli(0, 2 .* h .* sqrt(K * (K + 1)));
+    plot(h, p_Rice, <span class="string">'Color'</span>, colors(i,:), <span class="string">'Linewidth'</span>, 3)
+<span class="keyword">end</span>
+xlim([0 3])
+grid <span class="string">on</span>
+xlabel(<span class="string">'h'</span>)
+ylabel(<span class="string">'Ph(h)'</span>)
+title(<span class="string">'Rice'</span>)
+legend(arrayfun(@(K) [<span class="string">'K = '</span>, num2str(K)], K_values, <span class="string">'UniformOutput'</span>, false))
+
+<span class="comment">% Nakagami-m Distribution for m = [0.5 1 2 5]</span>
+m_values = [0.5 1 2 5];
+PrMed = 1;
+figure
+hold <span class="string">on</span>
+<span class="keyword">for</span> i = 1:length(m_values)
+    m = m_values(i);
+    p_Nakagami = ((2 * m^m * h.^(2 * m - 1)) / (gamma(m) * PrMed^m)) .* exp(-m * h.^2 / PrMed);
+    plot(h, p_Nakagami, <span class="string">'Color'</span>, colors(i,:), <span class="string">'Linewidth'</span>, 3)
+<span class="keyword">end</span>
+xlim([0 3])
+grid <span class="string">on</span>
+xlabel(<span class="string">'h'</span>)
+ylabel(<span class="string">'Ph(h)'</span>)
+title(<span class="string">'Nakagami-m'</span>)
+legend(arrayfun(@(m) [<span class="string">'m = '</span>, num2str(m)], m_values, <span class="string">'UniformOutput'</span>, false))
+</pre>
+<img vspace="5" hspace="5" src="Assignment1_01.png" alt=""> <img vspace="5" hspace="5" src="Assignment1_02.png" alt=""> <img vspace="5" hspace="5" src="Assignment1_03.png" alt=""> <h2 id="2">Quest&atilde;o 2:</h2>
+<pre class="codeinput">
+<span class="comment">%{
+</span><span class="comment">Considere um sistema operando na frequ&ecirc;ncia de portadora de 900MHz,
+</span><span class="comment">com o m&oacute;vel a 120km/h. A largura de faixa &eacute; de 200kHz, e a dura&ccedil;&atilde;o de
+</span><span class="comment">um s&iacute;mbolo &eacute; de 0.557ms. Assuma um espalhamento de atraso rms de 25 μs.
+</span><span class="comment">
+</span><span class="comment">Classifique o canal em termos de seletividade em frequ&ecirc;ncia e
+</span><span class="comment">varia&ccedil;&atilde;o temporal
+</span><span class="comment">%}
+</span>Ts = 0.557e-3;
+Bs = 200e3;
+fc = 900e6;
+v = 120/3.6;
+sigma = 25e-6;
+c = 3e8;
+lambda = c/fc;
+fm = v/lambda;
+Tc = 1/fm;
+Bc = 1/(5*sigma);
+disp(<span class="string">'O desvanescimento &eacute; '</span>)
+<span class="keyword">if</span>(Ts&gt;Tc)
+    disp(<span class="string">'Rapido'</span>);
+<span class="keyword">else</span>
+    disp(<span class="string">'Lento'</span>);
+<span class="keyword">end</span>
+disp(<span class="string">'Em tempo e'</span>);
+<span class="keyword">if</span>(Bs&gt;Bc)
+    disp(<span class="string">'Seletivo'</span>);
+<span class="keyword">else</span>
+    disp(<span class="string">'Plano'</span>);
+<span class="keyword">end</span>
+disp(<span class="string">'Em frequ&ecirc;ncia'</span>);
+</pre>
+<pre class="codeoutput">O desvanescimento &eacute; 
+Lento
+Em tempo e
+Seletivo
+Em frequ&ecirc;ncia
+</pre>
+<h2 id="3">Quest&atilde;o 3</h2>
+<pre class="codeinput">
+<span class="comment">%{
+</span><span class="comment">Seja o seguinte perfil de pot&ecirc;ncias discreto, de um canal de TV digital medido no Brasil.
+</span><span class="comment">
+</span><span class="comment"> Atraso (μs)	0	0.3	3.5	4.4	9.5	12.7
+</span><span class="comment"> Pot&ecirc;ncia (dB)	0	-12	-4	-7	-15	-22
+</span><span class="comment">
+</span><span class="comment">Determine a banda de coer&ecirc;ncia (em kHz), com 50% de correla&ccedil;&atilde;o.
+</span><span class="comment">%}
+</span>atraso = [0	0.3	3.5	4.4	9.5	12.7].*1e-6;
+PtdB = [0 -12 -4 -7	-15	-22];
+PtLin = 10.^(PtdB/10);
+tauMed = sum(atraso.*PtLin)/sum(PtLin);
+tau2Med = sum((atraso.^2).*PtLin)/sum(PtLin);
+sigma = sqrt(tau2Med - tauMed^2);
+Bc = 1/(5*sigma);
+disp(Bc)
+</pre>
+<pre class="codeoutput">   8.9843e+04
+
+</pre>
+<p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+%% Questão 1:
+%{
+Reproduzir as pdfs das distribuições Rayleigh, Rice e Nakagami-m. 
+(Faça o upload dos três gráficos abaixo. 
+%}
+% Define the colors for the plots
+colors = lines(4);
+
+% Rayleigh Distribution
+h = 0:0.001:100;
+p_Ray = (2 * h) .* exp(-h.^2); % Pr médio = 1
+figure
+plot(h, p_Ray, 'r', 'Linewidth', 3)
+xlim([0 3])
+grid on
+xlabel('h')
+ylabel('Ph(h)')
+title('Rayleigh')
+legend('Rayleigh')
+
+% Rice Distribution for K = [0 2 10]
+K_values = [0 2 10];
+figure
+hold on
+for i = 1:length(K_values)
+    K = K_values(i);
+    p_Rice = 2 .* h .* (K + 1) .* exp(-K - (K + 1) .* h.^2) .* besseli(0, 2 .* h .* sqrt(K * (K + 1)));
+    plot(h, p_Rice, 'Color', colors(i,:), 'Linewidth', 3)
+end
+xlim([0 3])
+grid on
+xlabel('h')
+ylabel('Ph(h)')
+title('Rice')
+legend(arrayfun(@(K) ['K = ', num2str(K)], K_values, 'UniformOutput', false))
+
+% Nakagami-m Distribution for m = [0.5 1 2 5]
+m_values = [0.5 1 2 5];
+PrMed = 1;
+figure
+hold on
+for i = 1:length(m_values)
+    m = m_values(i);
+    p_Nakagami = ((2 * m^m * h.^(2 * m - 1)) / (gamma(m) * PrMed^m)) .* exp(-m * h.^2 / PrMed);
+    plot(h, p_Nakagami, 'Color', colors(i,:), 'Linewidth', 3)
+end
+xlim([0 3])
+grid on
+xlabel('h')
+ylabel('Ph(h)')
+title('Nakagami-m')
+legend(arrayfun(@(m) ['m = ', num2str(m)], m_values, 'UniformOutput', false))
+%% Questão 2:
+%{
+Considere um sistema operando na frequência de portadora de 900MHz, 
+com o móvel a 120km/h. A largura de faixa é de 200kHz, e a duração de 
+um símbolo é de 0.557ms. Assuma um espalhamento de atraso rms de 25 μs.
+
+Classifique o canal em termos de seletividade em frequência e 
+variação temporal
+%}
+Ts = 0.557e-3;
+Bs = 200e3;
+fc = 900e6;
+v = 120/3.6;
+sigma = 25e-6;
+c = 3e8;
+lambda = c/fc;
+fm = v/lambda;
+Tc = 1/fm;
+Bc = 1/(5*sigma);
+disp('O desvanescimento é ')
+if(Ts>Tc)
+    disp('Rapido');
+else
+    disp('Lento');
+end
+disp('Em tempo e');
+if(Bs>Bc)
+    disp('Seletivo');
+else
+    disp('Plano');
+end
+disp('Em frequência');
+%% Questão 3
+%{
+Seja o seguinte perfil de potências discreto, de um canal de TV digital medido no Brasil.
+
+ Atraso (μs)	0	0.3	3.5	4.4	9.5	12.7
+ Potência (dB)	0	-12	-4	-7	-15	-22
+
+Determine a banda de coerência (em kHz), com 50% de correlação. 
+%}
+atraso = [0	0.3	3.5	4.4	9.5	12.7].*1e-6;
+PtdB = [0 -12 -4 -7	-15	-22];
+PtLin = 10.^(PtdB/10);
+tauMed = sum(atraso.*PtLin)/sum(PtLin);
+tau2Med = sum((atraso.^2).*PtLin)/sum(PtLin);
+sigma = sqrt(tau2Med - tauMed^2);
+Bc = 1/(5*sigma);
+disp(Bc)
+
+##### SOURCE END #####
+-->
+</body>
+</html>

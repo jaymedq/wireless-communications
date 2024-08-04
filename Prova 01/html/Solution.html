@@ -1,0 +1,464 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+<title>Solution</title>
+<meta name="generator" content="MATLAB 23.2">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2024-07-08">
+<meta name="DC.source" content="Solution.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style>
+</head>
+<body>
+<div class="content">
+<h2>Contents</h2>
+<div>
+<ul>
+<li>
+<a href="#1">Quest&atilde;o 1</a>
+</li>
+<li>
+<a href="#2">Informa&ccedil;&atilde;o</a>
+</li>
+<li>
+<a href="#3">Quest&otilde;es 2, 3 e 4</a>
+</li>
+<li>
+<a href="#4">Quest&otilde;es 5 e 6</a>
+</li>
+<li>
+<a href="#5">Quest&atilde;o 7</a>
+</li>
+<li>
+<a href="#6">Quest&atilde;o 8</a>
+</li>
+</ul>
+</div>
+<h2 id="1">Quest&atilde;o 1</h2>
+<pre class="codeinput">
+<span class="comment">%{
+</span><span class="comment">Analisando o grafico podemos concluir que o expoente de perda de propaga&ccedil;&atilde;o
+</span><span class="comment">N &eacute; maior que 4 devido a queda de mais de 40dB por decada.
+</span><span class="comment">(-43dBm em d = 10 e -86dBm em d = 100).
+</span><span class="comment">%}
+</span>clear;
+disp(<span class="string">'Quest&atilde;o 1'</span>);
+disp([<span class="string">'Analisando o grafico podemos concluir que o expoente de perda de '</span> <span class="string">'propaga&ccedil;&atilde;o N &eacute; maior que 4 devido a queda de mais de 40dB por decada.'</span> <span class="string">'(-43dBm em d = 10 e -86dBm em d = 100)'</span>]);
+</pre>
+<pre class="codeoutput">Quest&atilde;o 1
+Analisando o grafico podemos concluir que o expoente de perda de propaga&ccedil;&atilde;o N &eacute; maior que 4 devido a queda de mais de 40dB por decada.(-43dBm em d = 10 e -86dBm em d = 100)
+</pre>
+<h2 id="2">Informa&ccedil;&atilde;o</h2>
+<pre class="codeinput">
+<span class="comment">%{
+</span><span class="comment">Para cada um dos cen&aacute;rios das tr&ecirc;s quest&otilde;es a seguir, classifique o desvanecimento quando &agrave; sua seletividade temporal (lento ou r&aacute;pido) e seletividade em frequ&ecirc;ncia (plano ou seletivo em frequ&ecirc;ncia).
+</span><span class="comment">Considere στ=2μs e usu&aacute;rios m&oacute;veis sujeitos a um espalhamento Doppler
+</span><span class="comment">BD=200 Hz.
+</span><span class="comment">%}</span>
+</pre>
+<h2 id="3">Quest&otilde;es 2, 3 e 4</h2>
+<pre class="codeinput">clear;
+disp(<span class="string">'Quest&otilde;es 2, 3 e 4'</span>);
+sigma = 2e-6;
+BD = 200;
+Rb = [500e3 5e3 10];
+M = 2; <span class="comment">% N simbolos, para binaria M = 2.</span>
+Nb = log2(M);
+Rs = Rb./Nb;
+Bs = Rs./2;
+Ts = 1./Rs;
+fm = BD;
+Tc = 1/fm;
+Bc = 1/(5*sigma);
+
+<span class="keyword">for</span> i = 1:length(Rb)
+    fprintf(<span class="string">'O desvanescimento para Rb = %d &eacute; '</span>, Rb(i))
+    <span class="keyword">if</span>(Ts(i)&gt;Tc)
+        fprintf(<span class="string">'Rapido '</span>);
+    <span class="keyword">else</span>
+        fprintf(<span class="string">'Lento '</span>);
+    <span class="keyword">end</span>
+    fprintf(<span class="string">'Em tempo e '</span>);
+    <span class="keyword">if</span>(Bs(i)&gt;Bc)
+        fprintf(<span class="string">'Seletivo '</span>);
+    <span class="keyword">else</span>
+        fprintf(<span class="string">'Plano '</span>);
+    <span class="keyword">end</span>
+    fprintf(<span class="string">'Em frequ&ecirc;ncia\n'</span>);
+<span class="keyword">end</span>
+</pre>
+<pre class="codeoutput">Quest&otilde;es 2, 3 e 4
+O desvanescimento para Rb = 500000 &eacute; Lento Em tempo e Seletivo Em frequ&ecirc;ncia
+O desvanescimento para Rb = 5000 &eacute; Lento Em tempo e Plano Em frequ&ecirc;ncia
+O desvanescimento para Rb = 10 &eacute; Rapido Em tempo e Plano Em frequ&ecirc;ncia
+</pre>
+<h2 id="4">Quest&otilde;es 5 e 6</h2>
+<pre class="codeinput">disp(<span class="string">'Quest&otilde;es 5 e 6'</span>);
+<span class="comment">%{
+</span><span class="comment">A capacidade com outage se aplica a canais de desvanecimento lento, em que
+</span><span class="comment">o tempo de coer&ecirc;ncia do canal &eacute; muito maior que o tempo de s&iacute;mbolo do
+</span><span class="comment">sinal, de forma que a SNR instant&acirc;nea γ permanece constante durante v&aacute;rias
+</span><span class="comment"> transmiss&otilde;es. Nessa situa&ccedil;&atilde;o, supondo que o transmissor n&atilde;o possui
+</span><span class="comment">conhecimento do canal e transmite com uma taxa fixa, h&aacute; uma probabilidade
+</span><span class="comment">da SNR instant&acirc;nea estar abaixo da m&iacute;nima SNR necess&aacute;ria para decodifica&ccedil;&atilde;o,
+</span><span class="comment">γmin. Essa probabilidade &eacute; chamada de probabilidade de outage, e para o
+</span><span class="comment">caso de desvanecimento Rayleigh &eacute; igual a
+</span><span class="comment">Pout = 1-exp(-SnrMin/Snr)
+</span><span class="comment">em que SnrMed corresponde &agrave; SNR m&eacute;dia. Considerando uma banda unit&aacute;ria, a
+</span><span class="comment">capacidade com outage (em bps/Hz), ent&atilde;o, &eacute; dada por
+</span><span class="comment">Co=(1&minus;Pout)log2(1+SnrMin)
+</span><span class="comment">Percebe-se que a SNR limiar SnrMin apresenta uma influ&ecirc;ncia n&atilde;o trivial em
+</span><span class="comment">Co: Se por um lado aumentar SnrMin aumenta log2(1+SnrMin), por outro lado o
+</span><span class="comment">aumento de SnrMin aumenta Pout, reduzindo Co. Espera-se, portanto, que a
+</span><span class="comment">capacidade com outage varie com  SnrMin de uma forma semelhante &agrave; apresentada
+</span><span class="comment"> na figura abaixo, existindo um valor de  γmin que maximiza Co.
+</span><span class="comment">Dessa forma, assumindo SnrMed=20 dB e banda unit&aacute;ria, determine qual o
+</span><span class="comment">valor de SnrMin  (em dB) que maximiza a capacidade com outage Co.
+</span><span class="comment">%}
+</span><span class="comment">% Definindo a SNR m&eacute;dia</span>
+clear;
+SNR_med_dB = 20;
+SNR_med = 10^(SNR_med_dB / 10);
+
+SNR_min_values = linspace(0, SNR_med, 1000); <span class="comment">% 1000 valores entre 0 e medio</span>
+Co_values = zeros(size(SNR_min_values));
+
+<span class="comment">%Pout = 1-exp(-SnrMin/SnrMed)</span>
+<span class="comment">%Co=(1&minus;Pout)*log2(1+SnrMin)</span>
+<span class="keyword">for</span> i = 1:length(SNR_min_values)
+    SNR_min = SNR_min_values(i);
+    Pout = 1-exp(-SNR_min/SNR_med); <span class="comment">% Calculando Pout</span>
+    Co_values(i) = (1-Pout)*log2(1+SNR_min); <span class="comment">% Calculando Co</span>
+<span class="keyword">end</span>
+
+<span class="comment">% Encontrando o valor de SNR_min que maximiza Co</span>
+[Co_max, idx_max] = max(Co_values);
+SNR_min_opt = SNR_min_values(idx_max);
+
+<span class="comment">% Convertendo SNR_min_opt para dB</span>
+SNR_min_opt_dB = 10 * log10(SNR_min_opt);
+
+<span class="comment">% Exibindo os resultados</span>
+fprintf(<span class="string">'O valor de SNR_min que maximiza a capacidade com outage &eacute; %.4f dB\n'</span>, SNR_min_opt_dB);
+<span class="comment">%{
+</span><span class="comment">Para o mesmo cen&aacute;rio do exerc&iacute;cio anterior, qual o valor m&aacute;ximo para a
+</span><span class="comment">capacidade com outage Co  (em bps/Hz)?
+</span><span class="comment">%}
+</span>fprintf(<span class="string">'A capacidade com outage m&aacute;xima &eacute; %.4f bps/Hz\n'</span>, Co_max);
+</pre>
+<pre class="codeoutput">Quest&otilde;es 5 e 6
+O valor de SNR_min que maximiza a capacidade com outage &eacute; 14.5528 dB
+A capacidade com outage m&aacute;xima &eacute; 3.6718 bps/Hz
+</pre>
+<h2 id="5">Quest&atilde;o 7</h2>
+<pre class="codeinput">disp(<span class="string">'Quest&atilde;o 7'</span>);
+<span class="comment">%{
+</span><span class="comment">A probabilidade de erro de bit de uma modula&ccedil;&atilde;o coerente em canal com
+</span><span class="comment">desvanecimento Rayleigh r&aacute;pido pode ser aproximada por:
+</span><span class="comment">Pb=alfa/2*(-(sqrt((0.5*beta*SNR_Med)/(1+0.5*beta*SNR_Med))
+</span><span class="comment">~~ alfa/(2*beta*SNR_Med)
+</span><span class="comment">em que γ&macr;=Eb/N0 &eacute; a SNR de bit, e α e β variam dependendo da ordem da
+</span><span class="comment">modula&ccedil;&atilde;o. Assim sendo, considerando um valor de Eb/N0=20 dB e apenas
+</span><span class="comment">modula&ccedil;&otilde;es do tipo M-PSK coerentes como op&ccedil;&atilde;o, determine qual o maior
+</span><span class="comment">valor de M que pode ser adotado de forma que Pb&le;10&minus;2.
+</span><span class="comment">%}
+</span>clear;
+M = [2 4 8 16 32 64];
+EbN0_dB = 20;
+EbN0 = 10^(EbN0_dB/10);
+alfa = 2./(log2(M));
+beta = 2*log2(M).*(sin(pi./M)).^2;
+Pb = zeros(size(M));
+<span class="keyword">for</span> i=1:length(M)
+    Pb(i) = alfa(i)./(2*beta(i)*EbN0);
+    fprintf(<span class="string">'M = %d: Pb = %.4f'</span>, M(i), Pb(i));
+    <span class="keyword">if</span>(Pb(i)&lt;=1e-2)
+        fprintf(<span class="string">' pode ser usado\n'</span>)
+    <span class="keyword">else</span>
+        fprintf(<span class="string">' n&atilde;o pode ser usado\n'</span>)
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre>
+<pre class="codeoutput">Quest&atilde;o 7
+M = 2: Pb = 0.0050 pode ser usado
+M = 4: Pb = 0.0025 pode ser usado
+M = 8: Pb = 0.0038 pode ser usado
+M = 16: Pb = 0.0082 pode ser usado
+M = 32: Pb = 0.0208 n&atilde;o pode ser usado
+M = 64: Pb = 0.0577 n&atilde;o pode ser usado
+</pre>
+<h2 id="6">Quest&atilde;o 8</h2>
+<pre class="codeinput">disp(<span class="string">'Quest&atilde;o 8'</span>);
+<span class="comment">%{
+</span><span class="comment">Com o valor de M obtido na quest&atilde;o anterior, continue considerando que
+</span><span class="comment">Eb/N0=20 dB e Pb&le;10&minus;2, e obtenha qual a taxa de transmiss&atilde;o de s&iacute;mbolos
+</span><span class="comment">Rs (em kilo s&iacute;mbolos/s), dados:
+</span><span class="comment">Modelo de propaga&ccedil;&atilde;o log-dist&acirc;ncia, com expoente de n igual a 3
+</span><span class="comment">Pr(d0)=0 dBm
+</span><span class="comment">d0=1 m
+</span><span class="comment">Dist&acirc;ncia entre tx e rx: 100 metros
+</span><span class="comment">N0=&minus;164 dB
+</span><span class="comment">%}
+</span>clear;
+M = 16;
+EbN0_dB = 20;
+EbN0 = 10^(EbN0_dB/10);
+Pb = 0.0082;
+n = 3;
+PrD0_dBm = 0;
+PrD0 = 10^((PrD0_dBm-30)/10);
+d0 = 1;
+d = 100;
+N0_dB = -164;
+N0 = 10^(N0_dB/10);
+<span class="comment">%PrN0 = EbN0*Rb</span>
+Pr = PrD0*((d0/d)^n);
+PrN0 = Pr/N0;
+Rb = PrN0/EbN0;
+Nb = log2(M);
+Rs = Rb/Nb;
+fprintf(<span class="string">'A taxa de transmiss&atilde;o de s&iacute;mbolos &eacute; %.3fks/s\n'</span>, Rs/1000);
+</pre>
+<pre class="codeoutput">Quest&atilde;o 8
+A taxa de transmiss&atilde;o de s&iacute;mbolos &eacute; 62.797ks/s
+</pre>
+<p class="footer">
+<br>
+<a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023b</a>
+<br>
+</p>
+</div>
+<!--
+##### SOURCE BEGIN #####
+%% Questão 1
+%{
+Analisando o grafico podemos concluir que o expoente de perda de propagação
+N é maior que 4 devido a queda de mais de 40dB por decada.
+(-43dBm em d = 10 e -86dBm em d = 100).
+%}
+clear;
+disp('Questão 1');
+disp(['Analisando o grafico podemos concluir que o expoente de perda de ' 'propagação N é maior que 4 devido a queda de mais de 40dB por decada.' '(-43dBm em d = 10 e -86dBm em d = 100)']);
+
+%% Informação
+%{
+Para cada um dos cenários das três questões a seguir, classifique o desvanecimento quando à sua seletividade temporal (lento ou rápido) e seletividade em frequência (plano ou seletivo em frequência).
+Considere στ=2μs e usuários móveis sujeitos a um espalhamento Doppler
+BD=200 Hz.
+%}
+
+%% Questões 2, 3 e 4
+clear;
+disp('Questões 2, 3 e 4');
+sigma = 2e-6;
+BD = 200;
+Rb = [500e3 5e3 10];
+M = 2; % N simbolos, para binaria M = 2.
+Nb = log2(M);
+Rs = Rb./Nb;
+Bs = Rs./2;
+Ts = 1./Rs;
+fm = BD;
+Tc = 1/fm;
+Bc = 1/(5*sigma);
+
+for i = 1:length(Rb)
+    fprintf('O desvanescimento para Rb = %d é ', Rb(i))
+    if(Ts(i)>Tc)
+        fprintf('Rapido ');
+    else
+        fprintf('Lento ');
+    end
+    fprintf('Em tempo e ');
+    if(Bs(i)>Bc)
+        fprintf('Seletivo ');
+    else
+        fprintf('Plano ');
+    end
+    fprintf('Em frequência\n');
+end
+
+%% Questões 5 e 6
+disp('Questões 5 e 6');
+%{
+A capacidade com outage se aplica a canais de desvanecimento lento, em que 
+o tempo de coerência do canal é muito maior que o tempo de símbolo do 
+sinal, de forma que a SNR instantânea γ permanece constante durante várias
+ transmissões. Nessa situação, supondo que o transmissor não possui 
+conhecimento do canal e transmite com uma taxa fixa, há uma probabilidade
+da SNR instantânea estar abaixo da mínima SNR necessária para decodificação, 
+γmin. Essa probabilidade é chamada de probabilidade de outage, e para o 
+caso de desvanecimento Rayleigh é igual a 
+Pout = 1-exp(-SnrMin/Snr)
+em que SnrMed corresponde à SNR média. Considerando uma banda unitária, a 
+capacidade com outage (em bps/Hz), então, é dada por
+Co=(1−Pout)log2(1+SnrMin)
+Percebe-se que a SNR limiar SnrMin apresenta uma influência não trivial em 
+Co: Se por um lado aumentar SnrMin aumenta log2(1+SnrMin), por outro lado o 
+aumento de SnrMin aumenta Pout, reduzindo Co. Espera-se, portanto, que a 
+capacidade com outage varie com  SnrMin de uma forma semelhante à apresentada
+ na figura abaixo, existindo um valor de  γmin que maximiza Co.
+Dessa forma, assumindo SnrMed=20 dB e banda unitária, determine qual o 
+valor de SnrMin  (em dB) que maximiza a capacidade com outage Co.
+%}
+% Definindo a SNR média
+clear;
+SNR_med_dB = 20;
+SNR_med = 10^(SNR_med_dB / 10);
+
+SNR_min_values = linspace(0, SNR_med, 1000); % 1000 valores entre 0 e medio
+Co_values = zeros(size(SNR_min_values));
+
+%Pout = 1-exp(-SnrMin/SnrMed)
+%Co=(1−Pout)*log2(1+SnrMin)
+for i = 1:length(SNR_min_values)
+    SNR_min = SNR_min_values(i);
+    Pout = 1-exp(-SNR_min/SNR_med); % Calculando Pout
+    Co_values(i) = (1-Pout)*log2(1+SNR_min); % Calculando Co
+end
+
+% Encontrando o valor de SNR_min que maximiza Co
+[Co_max, idx_max] = max(Co_values);
+SNR_min_opt = SNR_min_values(idx_max);
+
+% Convertendo SNR_min_opt para dB
+SNR_min_opt_dB = 10 * log10(SNR_min_opt);
+
+% Exibindo os resultados
+fprintf('O valor de SNR_min que maximiza a capacidade com outage é %.4f dB\n', SNR_min_opt_dB);
+%{
+Para o mesmo cenário do exercício anterior, qual o valor máximo para a 
+capacidade com outage Co  (em bps/Hz)?
+%}
+fprintf('A capacidade com outage máxima é %.4f bps/Hz\n', Co_max);
+
+%% Questão 7
+disp('Questão 7');
+%{
+A probabilidade de erro de bit de uma modulação coerente em canal com 
+desvanecimento Rayleigh rápido pode ser aproximada por:
+Pb=alfa/2*(-(sqrt((0.5*beta*SNR_Med)/(1+0.5*beta*SNR_Med)) 
+~~ alfa/(2*beta*SNR_Med)
+em que γ¯=Eb/N0 é a SNR de bit, e α e β variam dependendo da ordem da 
+modulação. Assim sendo, considerando um valor de Eb/N0=20 dB e apenas 
+modulações do tipo M-PSK coerentes como opção, determine qual o maior 
+valor de M que pode ser adotado de forma que Pb≤10−2.
+%}
+clear;
+M = [2 4 8 16 32 64];
+EbN0_dB = 20;
+EbN0 = 10^(EbN0_dB/10);
+alfa = 2./(log2(M));
+beta = 2*log2(M).*(sin(pi./M)).^2;
+Pb = zeros(size(M));
+for i=1:length(M)
+    Pb(i) = alfa(i)./(2*beta(i)*EbN0);
+    fprintf('M = %d: Pb = %.4f', M(i), Pb(i));
+    if(Pb(i)<=1e-2)
+        fprintf(' pode ser usado\n')
+    else
+        fprintf(' não pode ser usado\n')
+    end
+end
+
+%% Questão 8
+disp('Questão 8');
+%{
+Com o valor de M obtido na questão anterior, continue considerando que 
+Eb/N0=20 dB e Pb≤10−2, e obtenha qual a taxa de transmissão de símbolos 
+Rs (em kilo símbolos/s), dados:
+Modelo de propagação log-distância, com expoente de n igual a 3
+Pr(d0)=0 dBm
+d0=1 m
+Distância entre tx e rx: 100 metros
+N0=−164 dB
+%}
+clear;
+M = 16;
+EbN0_dB = 20;
+EbN0 = 10^(EbN0_dB/10);
+Pb = 0.0082;
+n = 3;
+PrD0_dBm = 0;
+PrD0 = 10^((PrD0_dBm-30)/10);
+d0 = 1;
+d = 100;
+N0_dB = -164;
+N0 = 10^(N0_dB/10);
+%PrN0 = EbN0*Rb
+Pr = PrD0*((d0/d)^n);
+PrN0 = Pr/N0;
+Rb = PrN0/EbN0;
+Nb = log2(M);
+Rs = Rb/Nb;
+fprintf('A taxa de transmissão de símbolos é %.3fks/s\n', Rs/1000);
+
+##### SOURCE END #####
+-->
+</body>
+</html>
