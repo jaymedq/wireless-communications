@@ -1,60 +1,104 @@
 clc; clear; close all;
 rand('state',0);
 randn('state',0);
+
 %--------------------------------------------------------------------------
 % Parâmetros:
 %--------------------------------------------------------------------------
-SNRdB = 0:1:12;  % relação sinal-ruído (SNR) em dB
-SNRdB
-nBits = 10^4;    % quantidade de bits transmitidos
-Eb = 1;          % energia de bit   
+SNRdB = -3:20;  % relação sinal-ruído (SNR) em dB
+nFrames = 1000;   % número de blocos de dados (frames) transmitidos
+K = 1000;        % número de bits por bloco
+Eb = 1;          % energia de bit
+
 %-------------------------------------------------------------------------
-SNR = 10.^(SNRdB/10);   % SNR linear;
-ber_awgn = zeros(1,length(SNR));
-ber_awgn_cc = zeros(1,length(SNR));
-nn = (randn(1,nBits)+1i*randn(1,nBits));
-for i=1:length(SNR)   
+SNR = 10.^(SNRdB/10);   % SNR linear
+fer_no_retx = zeros(1, length(SNR));
+fer_one_retx = zeros(1, length(SNR));
+fer_two_retx = zeros(1, length(SNR));
+nn = (randn(1, K) + 1i*randn(1, K)); % ruído para um bloco
+
+% Definição do código convolucional
+trellis = poly2trellis(3, [6 7]); % Define a treliça
+tbdepth = 2; % Profundidade da traceback
+
+for i = 1:length(SNR)
     disp(['SNR = [' num2str(SNRdB(i)) '/' num2str(max(SNRdB)) '] (dB)']);
-    N0 =  Eb./SNR(i);       % SNR = Eb/N0 ==> N0 = Eb/SNR
-    m = rand(1,nBits)>0.5;  % gera sequência aleatória de bits
-    n = sqrt(0.5*N0)*nn;             
+    N0 = Eb / SNR(i);  % SNR = Eb/N0 ==> N0 = Eb/SNR
     
-    %% AWGN
-    x = 2*m-1; % BPSK
-    y = x + n;
-    err = sum(real(y>0)~= m);
-    ber_awgn(i) = err/nBits;
-    %% Convolutional AWGN
-    % Código Convolutional
-    trellis = poly2trellis(7,[171 133]); % Define treliça.
-    % Codificação
-    m_cc = convenc(m,trellis); %Codifica mensagem
-    nn_cc = (randn(1,length(m_cc))+1i*randn(1,length(m_cc))); % Cria array base do ruido
-    n_cc = sqrt(0.5*N0)*nn_cc; % Ruido branco aleatorio
-    x_cc = 2*m_cc-1;% BPSK
-    y_cc = x_cc + n_cc; % Aplica ruido
-    w_cc = real(y_cc>0); %Decisao BPSK
-    tbdepth = 2;
-    decodedData = vitdec(w_cc,trellis,tbdepth,'trunc','hard');
-    % Cálculo de erro
-    err_cc = sum(decodedData~=m);
-    ber_awgn_cc(i) = err_cc/nBits;
+    % Inicializa contadores de erro
+    errors_no_retx = 0;
+    errors_one_retx = 0;
+    errors_two_retx = 0;
+    
+    for frame = 1:nFrames
+        % Gera sequência aleatória de bits
+        m = rand(1, K) > 0.5;
+        n = sqrt(0.5 * N0) * nn;
+        % Codificação
+        m_cc = convenc(m, trellis); % Codifica a mensagem
+        nn_cc = (randn(1, length(m_cc)) + 1i*randn(1, length(m_cc))); % Cria array base do ruído
+        n_cc = sqrt(0.5 * N0) * nn_cc; % Ruído branco aleatório
+        x_cc = 2 * m_cc - 1; % BPSK
+        
+        % Sem retransmissões
+        h_slow = sqrt(1/2) * (randn + 1i*randn); % Canal de desvanecimento lento
+        y_slow = h_slow * x_cc + n_cc;
+        y_slow_eq = y_slow / h_slow; % Equalização
+        w_slow = real(y_slow_eq > 0);
+        decodedData_slow = vitdec(w_slow, trellis, tbdepth, 'trunc', 'hard');
+        err_slow = sum(decodedData_slow ~= m);
+        if err_slow > 0
+            errors_no_retx = errors_no_retx + 1;
+        end
+        
+        % Com possibilidade de até uma retransmissão (HARQ simples)
+        for attempt = 1:2
+            h_slow = sqrt(1/2) * (randn + 1i*randn);
+            y_slow = h_slow * x_cc + n_cc;
+            y_slow_eq = y_slow / h_slow;
+            w_slow = real(y_slow_eq > 0);
+            decodedData_slow = vitdec(w_slow, trellis, tbdepth, 'trunc', 'hard');
+            err_slow = sum(decodedData_slow ~= m);
+            if err_slow == 0
+                break;
+            end
+        end
+        if err_slow > 0
+            errors_one_retx = errors_one_retx + 1;
+        end
+        
+        % Com possibilidade de até duas retransmissões (HARQ simples)
+        for attempt = 1:3
+            h_slow = sqrt(1/2) * (randn + 1i*randn);
+            y_slow = h_slow * x_cc + n_cc;
+            y_slow_eq = y_slow / h_slow;
+            w_slow = real(y_slow_eq > 0);
+            decodedData_slow = vitdec(w_slow, trellis, tbdepth, 'trunc', 'hard');
+            err_slow = sum(decodedData_slow ~= m);
+            if err_slow == 0
+                break;
+            end
+        end
+        if err_slow > 0
+            errors_two_retx = errors_two_retx + 1;
+        end
+    end
+    
+    % Cálculo da FER
+    fer_no_retx(i) = errors_no_retx / nFrames;
+    fer_one_retx(i) = errors_one_retx / nFrames;
+    fer_two_retx(i) = errors_two_retx / nFrames;
 end
-SNR
-ber_awgn
-ber_awgn_cc
-Pb = qfunc(sqrt(2*SNR));
+
+% Plot FER
 figure
-semilogy(SNRdB, ber_awgn,'r*',...
-    'linewidth',2.0, 'markersize',6,'MarkerFaceColor', [0.5 1 1])
-legend({'Não Codificado'},'fontsize',12)
+semilogy(SNRdB, fer_no_retx, 'r-', 'LineWidth', 2);
 hold on;
-semilogy(SNRdB, Pb,'r--',...
-    'linewidth',2.0, 'markersize',6,'MarkerFaceColor', [0.5 1 1])
-hold on;
-semilogy(SNRdB, ber_awgn_cc, 'b-', 'linewidth',2.0, 'markersize',6,'MarkerFaceColor', [0.5 0.5 1])
-xlabel('E_b/N_0 (dB)')
-ylabel('BER')
-legend({'Não Codificado', 'Teórico', 'Codificado'},'fontsize',12)
-ylim([100/nBits 1])
-grid
+semilogy(SNRdB, fer_one_retx, 'g-', 'LineWidth', 2);
+semilogy(SNRdB, fer_two_retx, 'b-', 'LineWidth', 2);
+
+xlabel('E_b/N_0 (dB)');
+ylabel('FER');
+legend({'Sem Retransmissão', '1 Retransmissão', '2 Retransmissões'}, 'FontSize', 12);
+axis([-3 20 10^-5 1]);
+grid on;
