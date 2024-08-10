@@ -33,11 +33,10 @@ for i = 1:length(SNR)
     for frame = 1:nFrames
         % Gera sequência aleatória de bits
         m = rand(1, K) > 0.5;
-        n = sqrt(0.5 * N0) * nn;
         % Codificação
         m_cc = convenc(m, trellis); % Codifica a mensagem
-        nn_cc = (randn(1, length(m_cc)) + 1i*randn(1, length(m_cc))); % Cria array base do ruído
-        n_cc = sqrt(0.5 * N0) * nn_cc; % Ruído branco aleatório
+        R = 1/2;
+        n_cc = sqrt((0.5/R) * N0) * (randn(1, length(m_cc)) + 1i*randn(1, length(m_cc))); % Cria array base do ruído
         x_cc = 2 * m_cc - 1; % BPSK
         
         % Sem retransmissões
